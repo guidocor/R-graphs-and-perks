@@ -1,4 +1,4 @@
-setwd("~/Dropbox/cis/politica_corrupcion/"); library(XML)
+setwd("~/R"); library(XML)
 ###
 ### Script to make graphs of perceived problems of spanish population with historical data
 ### this script was used to ilustrate Rasgo Latente post: http://rasgolatente.es/politica-error-fundamental-atribucion/
@@ -39,14 +39,15 @@ plot_object <- function(object, size=24){ return(list(nombre=toString(object[[1]
 # size is the numbers of months you want to plot 
 size = 50
 # question number is the number of the question yo want to plot
-# watch the question looking at data[[1]]
-question_number = 13
+# watch the question looking at datos[[1]]
+datos[[1]]
+question_number = 2
 # graphic parameters
 par(mar=c(10,4,4,2)+0.1)
 
 serie<-plot(plot_object(datos[question_number,], size=size)$plot, type="o", 
             main = "Tres problemas principales que existen \n actualmente en España (multirespuesta)", col.main="#DD8787",
-            ylim=c(0,80), col="#B16C6C" ,pch=15, xaxt="n", 
+            ylim=c(0,90), col="#B16C6C" ,pch=15, xaxt="n", 
             ylab="Porcentaje de personas que eligieron como opción", xlab=" ")
 # create the bottom labels with the months
 axis(1,at=1:length(plot_object(datos[question_number,], size = size)$plot ),
@@ -54,10 +55,16 @@ axis(1,at=1:length(plot_object(datos[question_number,], size = size)$plot ),
 # bottom texts
 mtext("Fuente: CIS",side=1,line=6)
 mtext("@RasgoLatente",side=1,line=4, col = "#DD8787")
-text_legend <- c(plot_object(datos[question_number,], size=size)$nombre, plot_object(datos[11,], size=size)$nombre )
 
 # create the legend. Make sure that col has the proper number of colours 
 legend("topright", text_legend, lty=c(1,1), col=c("#B16C6C","#6666ff") ,  lwd=c(2.5,2.5))
 
-# plot other line 
-lines(plot_object(datos[11,], size=size)$plot, type="o", col = "#6666ff", pch=16)
+# function to plot ohter line plot other line 
+
+lines(plot_object(datos[17,], size=size)$plot, type="o", col = "#6666ff", pch=16)
+lines(plot_object(datos[18,], size=size)$plot, type="o", col = "#6666ff", pch=16)
+lines(plot_object(datos[19,], size=size)$plot, type="o", col = "#6666ff", pch=16)
+
+
+text_legend <- c(plot_object(datos[question_number,], size=size)$nombre, plot_object(datos[19,], size=size)$nombre )
+
